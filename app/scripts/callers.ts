@@ -6,7 +6,8 @@ export async function RegisterUser(
     confirmPassword: string, 
     firstName: string, 
     lastName: string, 
-    preferedLanguage: string
+    preferedLanguage: string,
+    selectedRole: string
 ) {
     try {
         const response = await fetch(`${API_BASE_URL}/register`, {
@@ -21,6 +22,7 @@ export async function RegisterUser(
                 firstName,
                 lastName,
                 preferedLanguage,
+                selectedRole
             }),
         });
 

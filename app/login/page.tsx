@@ -22,7 +22,7 @@ export default function Login() {
       if (response.ok) {
         const data = await response.json();
         console.log("Login successful:", data);
-        router.push("/helper");
+        router.push("/addHelpee");
       } else {
         const errorData = await response.json();
         console.error("Login failed:", errorData.message);
@@ -81,12 +81,6 @@ export default function Login() {
             className="w-full py-3 bg-black text-white rounded-lg hover:bg-gray-900"
           >
             LOGIN
-          </button>
-          <button
-            type="submit"
-            className="w-full py-3 bg-black text-white rounded-lg hover:bg-gray-900"
-          >
-            GET STARTED
           </button>
         </form>
 

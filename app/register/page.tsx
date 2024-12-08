@@ -30,7 +30,7 @@ export default function Register() {
       e.preventDefault(); // Prevent the default form submission
 
       const response = await RegisterUser(email, password, confirmPassword,
-        firstName, lastName, "en");
+        firstName, lastName, "en", selectedRole);
       console.log(response);
 
       if (response.ok) {

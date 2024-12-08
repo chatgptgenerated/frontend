@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { AddHelp, FetchHelperList } from "../scripts/buddycallers"; // Assume FetchHelperList fetches the list
+import { AddHelp, getAllHelped as Import } from "../scripts/buddycallers"; // Assume FetchHelperList fetches the list
 import Image from "next/image";
 
 export default function IdInputPage() {
@@ -14,13 +14,11 @@ export default function IdInputPage() {
     // Fetch the list of people the user is helping
     const fetchHelpers = async () => {
       try {
-        const response = await FetchHelperList();
-        if (response.ok) {
-          const data = await response.json();
-          setHelperList(data);
-        } else {
-          console.error("Failed to fetch helper list");
-        }
+        const response = await Import();
+        console.log(response);
+        const data = await response;
+        console.log(data);
+        setHelperList(data);
       } catch (error) {
         console.error("An error occurred while fetching the helper list:", error);
       }
@@ -92,12 +90,11 @@ export default function IdInputPage() {
           <h2 className="text-2xl font-semibold">People You Are Helping</h2>
           {helperList.length > 0 ? (
             <ul className="space-y-2 mt-4">
-              {helperList.map((person, index) => (
+              {helperList.map(x => (
                 <li
-                  key={index}
                   className="px-4 py-2 border border-gray-300 rounded-lg"
                 >
-                  {person.name} ({person.code})
+                  {x.fullName}
                 </li>
               ))}
             </ul>
