@@ -2,9 +2,55 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { useRouter } from 'next/navigation'
+import { RegisterUser } from "../scripts/callers";
 
 export default function Register() {
   const [selectedRole, setSelectedRole] = useState(""); // Track selected button
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  //const [preferedLanguage, setPreferedLanguage] = useState("");
+
+
+  /*
+    email: string, 
+    password: string, 
+    confirmPassword: string, 
+    firstName: string, 
+    lastName: string, 
+    preferedLanguage: string
+  */
+
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+    try {
+      e.preventDefault(); // Prevent the default form submission
+
+      const response = await RegisterUser(email, password, confirmPassword,
+        firstName, lastName, "en");
+      console.log(response);
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Register successful:", data);
+
+        // TODO see if this account is helper or not
+        router.push("/helper");
+      } else {
+        const errorData = await response.json();
+        console.error("Register failed:", errorData.message);
+
+        
+        router.push("/register");
+        // Handle login error (e.g., show error message to user)
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-white text-gray-800 p-6">
@@ -33,20 +79,45 @@ export default function Register() {
         <h1 className="text-2xl sm:text-3xl font-bold mb-8">Create an Account</h1>
 
         {/* Form */}
-        <form className="w-full flex flex-col gap-6">
+        <form className="w-full flex flex-col gap-6" onSubmit={handleSubmit}>
           <input
             type="text"
-            placeholder="Your Name"
+            name="name"
+            placeholder="Your First Name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+          />
+          <input
+            type="text"
+            name="lastName"
+            placeholder="Your Last Name"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
           />
           <input
             type="email"
+            name="email"
             placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
           />
           <input
             type="password"
+            name="password"
             placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+          />
+          <input
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
           />
 
