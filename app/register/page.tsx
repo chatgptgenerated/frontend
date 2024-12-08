@@ -59,16 +59,27 @@ export default function Register() {
         <div className="h-14 w-14">
           <Image src="/logo1.svg" alt="App logo" width={56} height={56} />
         </div>
-        <nav className="flex gap-6 text-lg">
-          <a href="#" className="hover:underline">
-            About
+        <nav className="flex gap-10 text-lg">
+          <a href="/addPages" className="hover:underline mt-2">
+            Add Pages 
           </a>
-          <a href="#" className="hover:underline">
-            Contact
+          <a href="/addHelpee" className="hover:underline mt-2">
+            Add Helpee
           </a>
-          <a href="/login">
-            <button className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600">
+          <a href="/helpee" className="hover:underline mt-2">
+            Helpee
+          </a>
+          <a href="/learnPage" className="hover:underline mt-2">
+            Learning Page
+          </a>
+          <a href="/login"  className="hover:underline mt-2">
+            <button>
               Login
+            </button>
+          </a>
+          <a href="/register"  className="hover:underline mt-2">
+            <button>
+              Register
             </button>
           </a>
         </nav>
@@ -127,7 +138,7 @@ export default function Register() {
               type="button"
               onClick={() => setSelectedRole("assist")}
               className={`w-full py-3 border rounded-lg ${
-                selectedRole === "assist"
+                selectedRole === ""
                   ? "bg-green-500 text-white border-green-500"
                   : "text-gray-800 border-gray-800 hover:bg-gray-100"
               }`}

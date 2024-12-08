@@ -13,15 +13,26 @@ export default function Home() {
           />
         </div>
         <nav className="flex gap-10 text-lg">
-          <a href="#" className="hover:underline mt-2">
-            About
+          <a href="/addPages" className="hover:underline mt-2">
+            Add Pages 
           </a>
-          <a href="#" className="hover:underline mt-2">
-            Our mission
+          <a href="/addHelpee" className="hover:underline mt-2">
+            Add Helpee
           </a>
-          <a href="/login">
-            <button className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600">
+          <a href="/helpee" className="hover:underline mt-2">
+            Helpee
+          </a>
+          <a href="/learnPage" className="hover:underline mt-2">
+            Learning Page
+          </a>
+          <a href="/login"  className="hover:underline mt-2">
+            <button>
               Login
+            </button>
+          </a>
+          <a href="/register"  className="hover:underline mt-2">
+            <button>
+              Register
             </button>
           </a>
         </nav>

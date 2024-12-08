@@ -55,12 +55,28 @@ export default function IdInputPage() {
         <div className="h-14 w-14">
           <Image src="/logo1.svg" alt="App logo" width={100} height={100} />
         </div>
-        <nav className="flex gap-8 text-lg">
-          <a href="#" className="hover:underline">
-            About
+        <nav className="flex gap-10 text-lg">
+          <a href="/addPages" className="hover:underline mt-2">
+            Add Pages 
           </a>
-          <a href="#" className="hover:underline">
-            Our mission
+          <a href="/addHelpee" className="hover:underline mt-2">
+            Add Helpee
+          </a>
+          <a href="/helpee" className="hover:underline mt-2">
+            Helpee
+          </a>
+          <a href="/learnPage" className="hover:underline mt-2">
+            Learning Page
+          </a>
+          <a href="/login"  className="hover:underline mt-2">
+            <button>
+              Login
+            </button>
+          </a>
+          <a href="/register"  className="hover:underline mt-2">
+            <button>
+              Register
+            </button>
           </a>
         </nav>
       </header>
